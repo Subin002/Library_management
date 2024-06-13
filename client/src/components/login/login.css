@@ -1,0 +1,122 @@
+.full01 {
+    padding-top: 70px;
+    margin-top: -22px;
+    background-image: url('../../images/01.jpg');
+    background-size: cover;
+    height: 750px;
+    width: 1536px;
+}
+
+.container01 {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-bottom: 35px;
+    border: 0.5px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.container01:hover {
+    transform: scale(1.04);
+    /* Scale the container on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    /* Scale the container on hover */
+
+}
+
+.h201 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.form01 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.box01 {
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+.box01 label {
+    color: #555;
+}
+
+.box01 input {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 5px;
+    width: 100%;
+    height: 25px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+    background-color: transparent;
+    color: #333;
+}
+
+.box01 input:focus {
+    outline: none;
+    border-color: #009dff65;
+}
+
+.box01 input::placeholder {
+    color: #aaa;
+}
+
+.box01 input:focus::placeholder {
+    color: transparent;
+}
+
+.login01,
+.signup01 {
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.login01 {
+    margin-top: 25px;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 7px 33px;
+    color: #0060f0;
+    background-color: #008cff17;
+    transition: padding 0.3s ease;
+    border-radius: 15px;
+    text-decoration: none;
+}
+
+.login01:hover {
+    background-color: #008cff20;
+    color: #0052cd;
+}
+
+.signup01 {
+    padding: 7px 30px;
+    color: #ba9500;
+    background-color: #ff9d0017;
+    transition: padding 0.3s ease;
+    border-radius: 15px;
+    text-decoration: none;
+}
+
+.signup01:hover {
+    background-color: #ff9d0020;
+    color: #8d6700;
+}
+
+.q01 {
+    margin-top: 0px;
+}
+
+.alert01 {
+    color: red;
+    font-size: 13px;
+}

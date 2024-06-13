@@ -1,0 +1,151 @@
+
+.h402{
+   color: #9d9d9d;
+   padding-right: 76%;
+   padding-left: 1%;
+   margin-top: 15px;
+   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.nav02{
+    display: flex;
+    padding-top: 5px;  
+}
+.img02{
+    height: 50px;
+    padding-left: 20px;
+    margin-left: 10px;
+}
+.navright02{
+    display: flex;
+}
+.h502{
+    cursor: pointer;
+}
+.img202{
+    margin-top: 11px;
+    cursor: pointer;
+}
+.img1602{
+    margin-top: 8px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.dropDownProfile{
+    position: absolute;
+    z-index: +1;
+    top: 4.5rem;
+    right: 1.5rem;
+    width: 240px;
+    padding-left: 10px;
+    padding-right: 270px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-radius: 9px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(138, 138, 138);
+    transform: translateY(-10px); /* Initial position */
+    transition: transform 0.4s ease;
+    animation: fadeOut 0.4s ease forwards;
+}
+.dropDownProfile:hover {
+    transform: translateY(0);
+}
+@keyframes fadeOut {
+    0% { opacity: 1; } /* Start with full opacity */
+    100% { opacity: 0; display: none; } /* Fade out to completely invisible and hide */
+}
+
+/* Delay the start of the animation for 5 seconds */
+.dropDownProfile {
+    animation-delay: 8s;
+    
+}
+.ul02{
+    
+    padding-left: 0px;
+    width: 85px;
+}
+ul{
+    display: flex;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.about02{
+    margin-top: 12px;
+    margin-right: -20px;
+    padding-bottom: 6px;
+    padding-top: 5px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.about02:hover{
+   
+    background-color: rgba(0, 157, 255, 0.185);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.contact02{
+    margin-top: 12px;
+    margin-right: -18px;
+    padding-bottom: 6px;
+    padding-top: 5px;
+    padding-right: 17px;
+    padding-left: 17px;
+}
+.contact02:hover{
+   
+    background-color: rgba(0, 157, 255, 0.185);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logout02{
+    margin-top: 12px;
+    padding-bottom: 6px;
+    padding-top: 5px;
+    padding-right: 17px;
+    padding-left: 17px;
+}
+.logout02:hover{
+   
+    background-color: rgba(255, 0, 0, 0.111);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.dropDownProfile::before{
+    content: '';
+    position: absolute;
+    top: -0.7rem;
+    right: 1.1rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: rgb(255, 255, 255);
+    border-left: 1px solid gray;
+    border-top: 1px solid gray;
+}
+.h502{
+    margin-right: 20px;
+    color: rgb(44, 44, 44);
+}
+
+@media screen and (max-width: 1000px) {
+    .nav02 {
+        width: 90%;
+    }
+}
+@media screen and (max-width: 800px) {
+    .nav02 {
+        width: 70%;
+    }
+}
+@media screen and (max-width: 650px) {
+    .nav02 {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .nav02 {
+        width: 50%; 
+    }
+}

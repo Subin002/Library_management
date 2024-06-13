@@ -1,0 +1,49 @@
+.h207 {
+    background-color: #000000;
+    color: #ffffff;
+    margin-top: 80px;
+    margin-bottom: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.table-container07 {
+    padding: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-image: url('../../../images/03.jpg');
+    max-width: 100%;
+    overflow-x: auto;
+    /* Horizontal scrolling */
+    overflow-y: auto;
+}
+
+.styled-table07 {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #ffffff;
+    backdrop-filter: blur(10px);
+}
+
+.styled-table07 th,
+.styled-table07 td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ffffff84;
+    color: #ffffff;
+}
+
+.styled-table07 th {
+    background-color: #ffffffda;
+    color: rgb(0, 0, 0);
+}
+
+.styled-table07 tr:hover {
+    background-color: #3636368b;
+}
+.feedback07{
+    max-width: 150px;
+    word-wrap: break-word;
+  }
+  

@@ -1,0 +1,337 @@
+
+.container03 {
+    padding-top: 50px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 20px 0;
+    /* Adjust margin as needed */
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 480px;
+    width: calc(100% * 3);
+    /* Adjust based on the number of images */
+}
+
+.carousel img {
+    width: 100%;
+    height: 480px;
+    /* Set image height */
+    object-fit: cover;
+    /* Ensure images cover the container */
+    transition: transform 0.8s ease-in-out;
+}
+
+/* Hover effect on images */
+.carousel img:hover {
+    transform: scale(1.1);
+    /* Scale up the image on hover */
+}
+
+
+.hr03 {
+    width: 90%;
+    margin-left: 80px;
+}
+
+.badges03 {
+    display: flex;
+}
+
+.badge1,
+.badge2,
+.badge3,
+.badge4 {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    padding-left: 0px;
+    margin-right: 0px;
+    text-align: center;
+}
+
+
+
+.badges03 img {
+    object-fit: cover;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.badges03 img:hover {
+    transform: scale(1.1);
+    /* Scale the image by 10% on hover */
+}
+.homequotes{
+    margin-top: 20px;
+    background-color: rgb(215, 250, 248);
+    width: 80%;
+    margin-left: 150px;
+    padding: 30px;
+    border-radius: 10px;
+}
+.homequotes02{
+    margin-top: 20px;
+    background-color: rgba(208, 255, 218, 0.858);
+    width: 80%;
+    margin-left: 150px;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+.homequotes03{
+    margin-top: 20px;
+    background-color: rgba(255, 254, 197, 0.578);
+    width: 80%;
+    margin-left: 150px;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    box-shadow: #02653c;
+}
+.homequotes04{
+    margin-top: 20px;
+    background-color: rgba(255, 227, 226, 0.849);
+    width: 80%;
+    margin-left: 150px;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    box-shadow: #02653c;
+}
+
+.image09 {
+    height: auto;
+    width: 25%;
+}
+
+.image10 {
+    height: auto;
+    width: 23%;
+}
+
+.image11 {
+    height: auto;
+    width: 21%;
+}
+
+.image12 {
+    height: auto;
+    width: 21%;
+}
+
+.viewallbook04 {
+    margin-top: 110px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.card-h203 {
+    margin-top: 40px;
+}
+
+.card-container03 {
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow cards to wrap to the next line */
+    margin-left: 120px;
+    padding-top: 30px;
+}
+
+.card03 {
+
+    border: 4px solid #6c6c6c5b;
+    border-radius: 10px;
+    padding: 0px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    width: 240px;
+    height: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+.card03 img {
+    max-width: 80%;
+    height: 120px;
+    margin-top: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    /* Add transition for smooth animation */
+}
+
+.card03 img:hover {
+    transform: scale(1.1);
+    /* Scale the image on hover */
+}
+
+.price03 {
+    color: rgb(255, 0, 0);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.description03 {
+    overflow-wrap: break-word;
+    /* Allow words to break */
+    width: 215px;
+    height: 45px;
+    font-size: 14px;
+    padding-bottom: 50px;
+}
+
+.addtocartbutton03 {
+    margin-right: 7px;
+    width: 100px;
+    height: 35px;
+    background-color: rgb(0, 86, 171);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    border: 3;
+    border-color: aqua;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.addtocartbutton03:hover {
+    background-color: rgb(0, 59, 118);
+}
+
+.buynowbutton03 {
+    padding: 0px;
+    width: 100px;
+    height: 35px;
+    background-color: rgb(57, 180, 0);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    border: 3;
+    border-color: rgb(46, 255, 31);
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.buynowbutton03:hover {
+    background-color: rgb(42, 133, 0);
+}
+
+.seeall03 {
+    width: 200px;
+    height: 30px;
+    background-color: rgb(62, 62, 62);
+    color: aliceblue;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.seeall03:hover {
+    background-color: rgb(96, 96, 96);
+    color: aliceblue;
+}
+
+/* .feedback03{
+    align-items: center;
+    margin-top: 20px;
+    padding: 40px;
+    border: 2px solid black;
+}
+.feedback03 input{
+    width: 300px;
+    margin: 10px;
+    align-items: center;
+} */
+.feedback03 {
+    border:1px solid rgba(210, 0, 0, 0.264);
+    border-radius: 5px;
+    background-color: #c0c0c01c;
+    margin: 20px;
+    width: 50%;
+    margin-left: 350px;
+    margin-top: 30px;
+    display: flex;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.fdimg{
+    padding: -10px;
+}
+
+.feedback03 label {
+    padding-top: 13px;
+    margin-bottom: 5px;
+    color: #02653c;
+    width: 80px;
+    align-items:start;
+}
+
+.feedback03 input {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+    background-color: transparent;
+    color: #333;
+    width: 400px;
+    margin-right: 25px;
+}
+
+.feedback03 input:focus {
+    outline: none;
+    border-color: #b5000065;
+}
+
+
+
+.feedback03 input:focus::placeholder {
+    color: transparent;
+}
+.fdsubmit {
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  height: 40px;
+  width: 70px;
+  margin-top: 50px;
+  border-radius: 5px;
+  background-color: #838383;
+  color: white;
+}
+.fdsubmit:hover{
+    background-color: #616161;
+}
+@media screen and (max-width: 1000px) {
+    .home-container {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .home-container {
+        width: 70%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .home-container {
+        width: 70%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .home-container {
+        width: 50%;
+        margin: 0 auto;
+    }
+}

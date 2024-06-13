@@ -1,0 +1,96 @@
+
+.nav04 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333; /* Change color as needed */
+    padding: 15px 20px;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+.h4admin{
+    color: #9d9d9d;
+    padding-right: 28%;
+    padding-left: 1%;
+    margin-top: 15px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ }
+.nav04 img {
+    margin-right: 10px;
+}
+
+.h304 {
+    margin: 0;
+    font-size: 24px;
+    margin-right: 350px;
+}
+
+.navright04 {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    font-size: 16px;  
+}
+.h604{
+   margin-right: 20px;
+   margin-top: 10px;
+   cursor: pointer;
+   color: #ffffff98;
+}
+.h604:hover{
+   color: #ffffff;
+}
+.h605{
+    margin-right: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+/* Style hover effect for menu items */
+.h504:hover {
+    text-decoration: underline;
+}
+
+.full04{
+    background-image: url('../../images/14.jpg') ;
+    background-size: cover;
+    height: 655px;
+    width: 100%;
+}
+.card-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+    margin-right: 150px;
+    margin-left: 220px;
+    padding-top: 110px;
+    
+}
+
+.card {
+    border: 2px solid #6c6c6c;
+    border-radius: 10px;
+    padding-top: 50px;
+    padding: 50px;
+    margin: 5px 20px 20px 20px;
+    width: 500px;
+    height: auto;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: aliceblue;
+    backdrop-filter: blur(15px);
+    transition: all 0.3s ease;
+    background-color: #33333331; /* Smooth transition for all properties */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Scale up by 5% on hover */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    border-color: rgb(255, 226, 39);
+}
+
+.card button{
+    padding: 10px 55px;
+    border-radius: 20px;
+    background-color: #6c6c6c;
+    color: aliceblue;
+}
