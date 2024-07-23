@@ -13,7 +13,9 @@ function Cart() {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const response = await axios.get('http://localhost:1500/getcart');
+                const user = JSON.parse(localStorage.getItem("user"));
+                const id = user._id;
+                const response = await axios.get(`http://localhost:1500/getcart/${id}`);
                 if (response.data && Array.isArray(response.data)) {
                     setInterbookData(response.data);
                 } else {

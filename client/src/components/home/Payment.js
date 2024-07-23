@@ -30,6 +30,76 @@ const Payment = () => {
     }
   }, [queryPrice, queryName]);
 
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = `https://www.paypal.com/sdk/js?client-id=${process.env.REACT_APP_PAYPAL_CLIENT_ID}`;
+    script.async = true;
+    script.onload = () => {
+      if (window.paypal) {
+        window.paypal.Buttons({
+          createOrder: async (data, actions) => {
+            try {
+              const response = await axios.post('http://localhost:1500/paypal/create-order', {
+                price,
+                name,
+                email,
+                address,
+                productName,
+              });
+              return response.data.orderId;
+            } catch (error) {
+              console.error('Error creating order:', error);
+              Swal.fire('Error', 'Failed to create PayPal order. Please try again.', 'error');
+            }
+          },
+          onApprove: async (data, actions) => {
+            return actions.order.capture().then(async (details) => {
+              try {
+                const paymentDetails = {
+                  name,
+                  email,
+                  address,
+                  productname: productName,
+                  price,
+                  paypalOrderId: details.id,
+                };
+
+                await axios.post('http://localhost:1500/payment/paypal', paymentDetails);
+                Swal.fire({
+                  title: 'Payment Successful!',
+                  text: 'Thank you for your purchase.',
+                  icon: 'success',
+                  confirmButtonText: 'OK'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    navigate('/cart');
+                  }
+                });
+
+                setName('');
+                setEmail('');
+                setAddress('');
+                setProductName('');
+                setPrice('');
+                setDebitCardNumber('');
+                setExpiryDate('');
+                setCvv('');
+              } catch (error) {
+                console.error('Payment failed:', error.response ? error.response.data : error.message);
+              }
+            });
+          },
+        }).render('#paypal-button-container');
+      } else {
+        console.error('PayPal SDK is not available');
+      }
+    };
+    script.onerror = () => {
+      console.error('PayPal script failed to load.');
+    };
+    document.body.appendChild(script);
+  }, [name, email, address, productName, price, navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -48,10 +118,7 @@ const Payment = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:1500/payment', paymentDetails);
-      console.log('Payment successful:', response.data);
-
-      // Show success alert using SweetAlert2 and navigate to home page on confirmation
+      await axios.post('http://localhost:1500/payment', paymentDetails);
       Swal.fire({
         title: 'Payment Successful!',
         text: 'Thank you for your purchase.',
@@ -59,11 +126,10 @@ const Payment = () => {
         confirmButtonText: 'OK'
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate('/cart'); // Navigate to home page with the specified id
+          navigate('/cart');
         }
       });
 
-      // Clear the form fields
       setName('');
       setEmail('');
       setAddress('');
@@ -160,6 +226,7 @@ const Payment = () => {
             <button className='button09' type="submit">Submit</button>
           </form>
         </div>
+        <div id="paypal-button-container"></div>
       </div>
     </div>
   );

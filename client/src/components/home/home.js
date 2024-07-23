@@ -90,7 +90,8 @@ function Home() {
   const handleSeeAllInter = () => navigate('/international');
   const handleSeeAllBestseller = () => navigate('/bestseller');
   const handleSeeAllAwards = () => navigate('/awardwins');
-
+  const user = JSON.parse(localStorage.getItem("user"));
+  const id = user._id;
   const addToCart = async (book) => {
     try {
       // Fetch the image file from the server
@@ -110,8 +111,9 @@ function Home() {
       formData.append('description', book.description);
       formData.append('price', book.price);
       formData.append('image', imageFile);
-
-      await axios.post('http://localhost:1500/postcart', formData, {
+     
+    
+      await axios.post(`http://localhost:1500/postcart/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -135,14 +137,19 @@ function Home() {
         position: 'top',
         icon: 'error',
         title: 'Oops...',
-        text: 'Failed to add to cart. Please try again.',
-      });
+        text: `Failed to add to cart. Please try again.${id}`,
+      })
     }
   };
-
   const handleBuy = (id, price, name) => {
-    navigate(`/paymentcard/${id}?price=${price}&name=${encodeURIComponent(name)}`);
-  };
+    axios.post(`http://localhost:1500/paymentcard?id=${id}&price=${price}&name=${encodeURIComponent(name)}`)
+        .then((res) => {
+            console.log("payment...");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
 
   const handleFeedbackChange = (e) => {
     const { name, value } = e.target;
@@ -185,7 +192,7 @@ function Home() {
   return (
     <div className='home-container'>
       <div className='nav03'>
-        <Nav />
+        <Nav  />
       </div>
 
       <div className='container03'>

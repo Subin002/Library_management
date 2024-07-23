@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
+const paypal = require('@paypal/checkout-server-sdk');
+
 const cors = require('cors');
-const port = 1500;
+
+const port = process.env.PORT || 1500;
 const mongoose = require('mongoose');
 const loginModel = require('./models/login');
 const bcrypt = require('bcrypt');
@@ -17,6 +20,7 @@ const fdModel = require('./models/feedback');
 const cartModel = require('./models/cart');
 const paymentModel = require('./models/payment');
 const awardwinsModel = require('./models/awardwins');
+const authModel = require('./models/login');
 
 // Middleware
 app.use(express.json());
@@ -45,6 +49,11 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+
+//payment
+const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
+const PAYPAL_CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET;
+const PAYPAL_BASE_URL = process.env.PAYPAL_BASE_URL;
 
 // SIGNUP
 app.post('/signup', async (req, res) => {
@@ -451,31 +460,63 @@ app.delete('/deleteawardbook/:id', async (req, res) => {
 
 //CART
 // Post route to add items to the cart
-app.post('/postcart', upload.single('image'), async (req, res) => {
+app.post('/postcart/:id', upload.single('image'), async (req, res) => {
     try {
         console.log('File received:', req.file); // Log file details
         console.log('Request body:', req.body); // Log other form fields
+        
+        // Ensure user is fetched correctly
+        const user = await authModel.findById(req.params.id);
+
+        // Check if user exists
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
 
         const { name, author, description, price } = req.body;
         const image = req.file ? req.file.filename : null;
 
-        const cartBook = await cartModel.create({ name, author, description, price, image: image || null });
+        // Ensure cart is initialized
+        if (!user.cart) {
+            user.cart = [];
+        }
 
-        res.status(201).json({ message: "Book added to cart successfully", book: cartBook });
+        // Push new book to cart
+        user.cart.push({ name, author, description, price, image: image || null });
+
+        // Save user with updated cart
+        await user.save();
+
+        res.status(201).json({ message: "Book added to cart successfully", book: { name, author, description, price, image } });
     } catch (error) {
         console.error("Error adding book:", error);
         res.status(500).json({ message: "Failed to add book" });
     }
 });
-app.get('/getcart', async (req, res) => {
+
+app.get('/getcart/:id', async (req, res) => {
     try {
-        const cartItems = await cartModel.find();
-        res.status(200).json(cartItems);
+        // Ensure user is fetched correctly
+        const user = await authModel.findById(req.params.id);
+
+        // Check if user exists
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Ensure cart is initialized
+        if (!user.cart) {
+            user.cart = [];
+        }
+
+        // Respond with cart items
+        res.status(200).json(user.cart);
     } catch (err) {
         console.error('Error retrieving cart items:', err);
         res.status(500).json({ error: 'Failed to retrieve cart items' });
     }
 });
+
 app.delete('/deletecart/:id', async (req, res) => {
     try {
         const bookId = req.params.id;
@@ -551,6 +592,86 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: "Internal server error" });
 });
 
+//payment
+app.post('/paypal/create-order', async (req, res) => {
+    const { price, name, email, address, productName } = req.body;
+  
+    try {
+      const accessToken = await getPayPalAccessToken();
+      const response = await axios.post(
+        `${PAYPAL_BASE_URL}/v2/checkout/orders`,
+        {
+          intent: 'CAPTURE',
+          purchase_units: [
+            {
+              amount: {
+                currency_code: 'USD',
+                value: price,
+              },
+              description: productName,
+            },
+          ],
+          payer: {
+            name: {
+              given_name: name,
+            },
+            email_address: email,
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+  
+      res.json({ orderId: response.data.id });
+    } catch (error) {
+      console.error('Error creating order:', error);
+      res.status(500).send('Failed to create PayPal order.');
+    }
+  });
+  
+  
+  app.post('/payment/paypal', async (req, res) => {
+    const { paypalOrderId } = req.body;
+  
+    try {
+      const accessToken = await getPayPalAccessToken();
+      const response = await axios.post(
+        `${PAYPAL_BASE_URL}/v2/checkout/orders/${paypalOrderId}/capture`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+  
+      res.json({ success: true, order: response.data });
+    } catch (error) {
+      console.error('Payment failed:', error);
+      res.status(500).send('Failed to capture PayPal payment.');
+    }
+  });
+  
+  const getPayPalAccessToken = async () => {
+    const response = await axios.post(
+      `${PAYPAL_BASE_URL}/v1/oauth2/token`,
+      'grant_type=client_credentials',
+      {
+        auth: {
+          username: PAYPAL_CLIENT_ID,
+          password: PAYPAL_CLIENT_SECRET,
+        },
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      }
+    );
+  
+    return response.data.access_token;
+  };
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

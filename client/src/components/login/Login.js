@@ -30,7 +30,8 @@ function Login() {
     try {
       const response = await axios.post('http://localhost:1500/login', { email, password });
       setLoading(false);
-      console.log('Response received:', response.data); // Debug log to check response
+      console.log('Response received:', response.data);
+      localStorage.setItem("user",JSON.stringify(response.data))// Debug log to check response
 
       const userData = {
         name: response.data.name,
@@ -45,7 +46,9 @@ function Login() {
       if (response.data.isAdmin) {
         navigate(`/adminhome/${response.data._id}`);
       } else {
-        navigate(`/home/${response.data._id}`);
+        // navigate(`/home/${response.data._id}`);
+        navigate('/home');
+     
       }
     } catch (err) {
       console.error('Login error:', err);

@@ -27,15 +27,21 @@ import Bestsellerbookupdate from './components/admin/bestseller/Bestsellerbookup
 import Awardwins from './components/home/Awardwins';
 import Orders from './components/admin/Orders/Orders';
 import Orderhistory from './components/home/Orderhistory';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [user,setuser]=useState({});
+  useEffect(()=>{
+    setuser(JSON.parse(localStorage.getItem("user")))
+
+  },[])
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path="/login" element={<Login/>} />
           <Route path="/" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/home/:id" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/newarrivals" element={<Newarrivals />} />
           <Route path='/international' element={<International/>}/>
           <Route path='/bestseller' element={<Bestseller/>}/>
@@ -43,7 +49,7 @@ function App() {
 
           <Route path='/cart' element={<Cart/>}/>
           <Route path='/orderhistory' element={<Orderhistory/>}/>
-          <Route path='/paymentcard/:id' element={<Payment/>}/>
+          <Route path='/paymentcard' element={<Payment/>}/>
           <Route path='/feedback' element={<Feedback/>}/>
 
           {/* ADMIN */}

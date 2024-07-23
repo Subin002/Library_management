@@ -19,12 +19,10 @@ const authSchema = mongoose.Schema({
         type:Boolean,
         default:false
     },
-    cart: [{
-        cartId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'carts'
-        },
-    }]
+    cart: {
+        type:Array,
+        ref:'cart'
+    }
 },{
     timestamps:true,
 })

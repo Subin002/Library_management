@@ -9,8 +9,18 @@ function Nav() {
     const navigate = useNavigate();
 
     const handlelogout = () => {
-        navigate('/');
+        // Clear user data from local storage
+        localStorage.removeItem("user");
+
+        // Navigate to the login page
+        navigate('/login');
+
+        // Optionally, reload the page after navigation if necessary
+        setTimeout(() => {
+            window.location.reload();
+        }, 0);
     };
+
 
     const handleDropdown = () => {
         setOpenProfile(!openProfile); // Toggles the state
